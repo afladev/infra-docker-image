@@ -1,0 +1,28 @@
+name: Build and push image
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ghcr.io/afladev/docker-php-apache:8.3
+
+jobs:
+  deploy:
+    name: Build and push image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login to registry
+        run: |
+          echo ${{ secrets.REGISTRY_PASSWORD }} | docker login ${{ env.REGISTRY }} --username ${{ github.actor }} --password-stdin
+
+      - name: Build image and push it to registry
+        run: |
+          docker build . --tag ${{ env.IMAGE_NAME }}
+          docker push ${{ env.IMAGE_NAME }}
