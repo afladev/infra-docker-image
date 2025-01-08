@@ -21,7 +21,12 @@ jobs:
         run: |
           echo ${{ secrets.REGISTRY_PASSWORD }} | docker login ${{ secrets.REGISTRY_HOST }} --username ${{ secrets.REGISTRY_USERNAME  }} --password-stdin
 
-      - name: Build image and push it to registry
+      - name: Build base image and push it to registry
         run: |
-          docker build . --tag ${{ env.IMAGE_NAME }}
+          docker build --target base --tag ${{ env.IMAGE_NAME }} .
           docker push ${{ env.IMAGE_NAME }}
+
+      - name: Build dev image and push it to registry
+        run: |
+          docker build --target dev --tag ${{ env.IMAGE_NAME }}-dev .
+          docker push ${{ env.IMAGE_NAME }}-dev
