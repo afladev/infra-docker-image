@@ -1,7 +1,5 @@
 FROM php:8.3-apache
 
-LABEL org.opencontainers.image.source="https://github.com/afladev/docker"
-
 # Set working directory
 WORKDIR /app
 

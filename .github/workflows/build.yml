@@ -6,8 +6,7 @@ on:
       - main
 
 env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ghcr.io/afladev/docker-php-apache:8.3
+  IMAGE_NAME: ${{ secrets.REGISTRY_HOST }}/${{ secrets.REGISTRY_VENDOR }}/docker-php-apache:8.3
 
 jobs:
   deploy:
@@ -20,7 +19,7 @@ jobs:
 
       - name: Login to registry
         run: |
-          echo ${{ secrets.REGISTRY_PASSWORD }} | docker login ${{ env.REGISTRY }} --username ${{ github.actor }} --password-stdin
+          echo ${{ secrets.REGISTRY_PASSWORD }} | docker login ${{ secrets.REGISTRY_HOST }} --username ${{ secrets.REGISTRY_USERNAME  }} --password-stdin
 
       - name: Build image and push it to registry
         run: |
