@@ -1,7 +1,9 @@
+ARG PHP_VERSION=8.2
+
 #-----------------------------
 # Base image for production
 #-----------------------------
-FROM php:8.3-apache as base
+FROM php:$PHP_VERSION-apache as base
 
 ARG WWW_USER=1000
 
