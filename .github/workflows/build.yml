@@ -28,9 +28,17 @@ jobs:
           - tag: 8.3
             php_version: 8.3
             target: base
-            latest: true
+            latest: false
           - tag: 8.3-dev
             php_version: 8.3
+            target: dev
+            latest: false
+          - tag: 8.4
+            php_version: 8.4
+            target: base
+            latest: true
+          - tag: 8.4-dev
+            php_version: 8.4
             target: dev
             latest: false
 
