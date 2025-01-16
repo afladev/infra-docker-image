@@ -55,7 +55,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.REGISTRY_HOST }}/${{ secrets.REGISTRY_VENDOR }}/docker-php-apache
+          images: ${{ secrets.REGISTRY_HOST }}/${{ secrets.REGISTRY_VENDOR }}/php
           tags: |
             type=raw,value=${{ matrix.tag }}
             type=raw,value=latest,enable=${{ matrix.latest }}
